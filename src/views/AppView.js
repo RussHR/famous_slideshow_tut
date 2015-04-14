@@ -6,6 +6,7 @@ define(function(require, exports, module) {
   var Transform = require('famous/core/Transform');
   var StateModifier = require('famous/modifiers/StateModifier');
   var ImageSurface = require('famous/surfaces/ImageSurface');
+  var ContainerSurface = require('famous/surfaces/ContainerSurface');
 
   var SlideshowView = require('views/SlideshowView');
 
@@ -59,7 +60,14 @@ define(function(require, exports, module) {
       transform: Transform.translate(0, this.options.slidePosition, 0)
     });
 
-    this.add(slideshowModifier).add(slideshowView);
+    var slideshowContainer = new ContainerSurface({
+      properties: {
+        overflow: 'hidden'
+      }
+    });
+
+    this.add(slideshowModifier).add(slideshowContainer);
+    slideshowContainer.add(slideshowView);
   }
 
   module.exports = AppView;
