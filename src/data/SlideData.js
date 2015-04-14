@@ -4,7 +4,7 @@ define(function(require, exports, module) {
         albumId: '6013105701911614529',
         picasaUrl: 'https://picasaweb.google.com/data/feed/api/user/',
         queryParams: '?alt=json&hl=en_US&access=visible&fields=entry(id,media:group(media:content,media:description,media:keywords,media:title))',
-        defaultImage: 'https://placekitten.com/g/364/364'
+        defaultImage: 'http://placeimg.com/364/364/any'
     };
 
     SlideData.getUrl = function() {
