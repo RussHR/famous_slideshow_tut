@@ -29,13 +29,18 @@ define(function(require, exports, module) {
   SlideshowView.prototype.constructor = SlideshowView;
 
   SlideshowView.prototype.showCurrentSlide = function() {
+    this.ready = false;
+
     var slide = this.slides[this.currentIndex];
     this.lightbox.show(slide, function() {
+      this.ready = true;
       slide.fadeIn();
     }.bind(this));
   };
 
   SlideshowView.prototype.showNextSlide = function() {
+    if (!this.ready) return;
+    
     this.currentIndex++;
     if (this.currentIndex === this.slides.length) this.currentIndex = 0;
     this.showCurrentSlide();
