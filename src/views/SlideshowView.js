@@ -52,11 +52,10 @@ define(function(require, exports, module) {
       showOrigin: [0.5, 0],
       // Transform.thenMove() first applies a transform then a
       // translation based on [x, y, z]
-      inTransform: Transform.thenMove(Transform.rotateX(0.9), [0, -300, 0]),
+      inTransform: Transform.thenMove(Transform.rotateX(0.9), [0, -300, -300]),
       outTransform: Transform.thenMove(Transform.rotateZ(0.7), [0, window.innerHeight, -1000]),
       inTransition: { duration: 650, curve: 'easeOut' },
-      outTransition: { duration: 500, curve: Easing.inCubic }   
-    }
+      outTransition: { duration: 500, curve: Easing.inCubic }    }
   };
 
   function _createLightbox() {
