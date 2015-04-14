@@ -1,16 +1,27 @@
 /*** main.js ***/
 
 define(function(require, exports, module) {
-    var Engine = require('famous/core/Engine');
-    
-    // import the AppView class using require
-    var AppView = require('views/AppView');
+  var Engine = require('famous/core/Engine');
+  
+  // import Utility
+  var Utility = require('famous/utilities/Utility');
 
-    var mainContext = Engine.createContext();
+  var AppView = require('views/AppView');
+  
+  // import SlideData
+  var SlideData = require('data/SlideData');
 
-  // create a new instance of app view
-    var appView = new AppView();
+  var mainContext = Engine.createContext();
 
-  // add the instance to the context
+  // simple Get request to the Picasa api with callback
+  initApp();
+
+  function initApp() {
+    // parses out reponse data and retrieves array of urls
+    data = SlideData.parse();
+
+    // instantiates AppView with our url data
+    var appView = new AppView({ data : data });
     mainContext.add(appView);
+  }
 });
