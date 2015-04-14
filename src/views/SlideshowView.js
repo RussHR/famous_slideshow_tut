@@ -32,6 +32,12 @@ define(function(require, exports, module) {
     this.lightbox.show(slide);
   };
 
+  SlideshowView.prototype.showNextSlide = function() {
+    this.currentIndex++;
+    if (this.currentIndex === this.slides.length) this.currentIndex = 0;
+    this.showCurrentSlide();
+  };
+
   SlideshowView.DEFAULT_OPTIONS = {
     size: [450, 500],
     data: undefined,
@@ -54,8 +60,14 @@ define(function(require, exports, module) {
       });
 
       this.slides.push(slide);
+
+      // adding click listener
+      // on click, calling .showNextSlide()
+      // note that we're binding showNextSlide to the slideshow
+      // to maintain the correct context when called
+      slide.on('click', this.showNextSlide.bind(this));
     }
-    
+
     this.showCurrentSlide();
   }
 
