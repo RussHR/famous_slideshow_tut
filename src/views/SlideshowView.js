@@ -15,7 +15,7 @@ define(function(require, exports, module) {
 
     this.rootModifier = new StateModifier({
       size: this.options.size,
-      origin: [0.5, 0],
+      origin: [0.5, 0.5],
       align: [0.5, 0]
     });
 
@@ -30,7 +30,9 @@ define(function(require, exports, module) {
 
   SlideshowView.prototype.showCurrentSlide = function() {
     var slide = this.slides[this.currentIndex];
-    this.lightbox.show(slide);
+    this.lightbox.show(slide, function() {
+      slide.fadeIn();
+    }.bind(this));
   };
 
   SlideshowView.prototype.showNextSlide = function() {
@@ -45,9 +47,9 @@ define(function(require, exports, module) {
     lightboxOpts: {
       inOpacity: 1,
       outOpacity: 0,
-      // inOrigin: [0, 0],
-      // outOrigin: [0, 0],
-      // showOrigin: [0, 0],
+      inOrigin: [0.5, 0],
+      outOrigin: [0.5, 0],
+      showOrigin: [0.5, 0],
       // Transform.thenMove() first applies a transform then a
       // translation based on [x, y, z]
       inTransform: Transform.thenMove(Transform.rotateX(0.9), [0, -300, 0]),
